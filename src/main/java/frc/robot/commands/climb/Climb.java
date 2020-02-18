@@ -9,6 +9,7 @@ public class Climb extends InstantCommand {
 
     private static boolean just_setup; // if true, only push the big pistons up to grab bar, don't actually climb
     private static boolean direction; // true = up
+
     public Climb(boolean up, boolean setup ) {
         just_setup = setup;
     }
@@ -20,7 +21,6 @@ public class Climb extends InstantCommand {
             climbSubsystem.setMiniPistons( UP );
         } else {
           climbSubsystem.setPistons( DOWN );
-          climbSubsystem.setMiniPistons( DOWN );
         }
     }
 
