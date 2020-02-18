@@ -46,7 +46,7 @@ public class Auton extends ParallelCommandGroup {
             case CLIMB_TEST: return
                 sequence(
                     new Climb(true),
-                    new DriveInches(6),
+                    new DriveInches(6)
                     // new Climb(ClimbDirection.DOWN)
                     // So let me explain why this is commented out
                     // you will never, _never_ forcefully push your robot onto the field, or on the ground
