@@ -7,42 +7,25 @@ import static frc.robot.Robot.*;
 
 public class Climb extends InstantCommand {
 
-    private static ClimbDirection currentPosition;
-
-    private ClimbDirection pos;
-
-    public Climb() {
-        this.pos = null;
-    }
-    public Climb(ClimbDirection dir) {
-        this.pos = dir;
+    private static bool just_setup; // if true, only push the big pistons up to grab bar, don't actually climb
+    private static bool direction; // true = up
+    public Climb(bool up, bool setup ) {
+        just_setup = setup;
     }
 
     @Override
     public void initialize() {
-        if(pos == null) pos = currentPosition.getOpposite();
-        currentPosition = pos;
-        climbSubsystem.setPistons(pos.getDirection());
+        if (just_setup) {
+            climbSubsystem.setPistons( UP );
+            climbSubsystem.setMiniPistons( UP );
+        } else {
+          climbSubsystem.setPistons( DOWN );
+          climbSubsystem.setMiniPistons( DOWN );
+        }
     }
 
     public enum ClimbDirection {
         UP  (DoubleSolenoid.Value.kForward),
         DOWN(DoubleSolenoid.Value.kReverse);
-
-        private DoubleSolenoid.Value direction;
-        private ClimbDirection(DoubleSolenoid.Value direction) {
-            this.direction = direction;
-        }
-
-        public DoubleSolenoid.Value getDirection() {
-            return direction;
-        }
-        public ClimbDirection getOpposite() {
-            switch(this) {
-                case UP: return DOWN;
-                case DOWN: return UP;
-                default: return null;
-            }
-        }
     }
 }

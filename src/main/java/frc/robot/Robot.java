@@ -91,7 +91,7 @@ public class Robot extends TimedRobot {
         // button mappings
         getButton(xboxController1, kA).whenHeld(new ToggleIntake());
         getButton(xboxController1, kB).whenHeld(new AutoShoot());
-        getButton(xboxController1, kX).whenPressed(new Climb());
+        getButton(xboxController1, kX).whenPressed(new Climb(false)); // Climb, retract all pistons
         getButton(xboxController1, kY);
         getButton(xboxController2, kBumperRight);
         getButton(xboxController2, kBumperLeft);
@@ -101,7 +101,7 @@ public class Robot extends TimedRobot {
         getButton(xboxController2, kX).whenHeld(new ToggleShooter());
         getButton(xboxController2, kY).whenHeld(new PlayMusic());
         getButton(xboxController2, kBumperRight).whenPressed(new MoveIntake());
-        getButton(xboxController2, kBumperLeft).whenPressed(new AngleClimber());
+        getButton(xboxController2, kBumperLeft).whenPressed(new Climb(true)); // Push up pistons to climb
     }
 
     /**
